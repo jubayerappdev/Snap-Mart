@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "262251115784",
+    "project_id": "snap-mart-c63fd",
+    "storage_bucket": "snap-mart-c63fd.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:262251115784:android:ca32fe00141e570f3de8bd",
+        "android_client_info": {
+          "package_name": "com.creativeitinstitute.snapmart"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDL1fhyBilbJzSJ5RecS0dLr6-_DoI8Ay4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

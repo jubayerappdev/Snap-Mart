@@ -9,8 +9,9 @@ import com.creativeitinstitute.snapmart.core.DataState
 import com.creativeitinstitute.snapmart.data.models.UserRegister
 import com.creativeitinstitute.snapmart.databinding.FragmentRegistrationBinding
 import com.creativeitinstitute.snapmart.isEmpty
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class RegistrationFragment : BaseFragment<FragmentRegistrationBinding>(FragmentRegistrationBinding::inflate) {
 
 

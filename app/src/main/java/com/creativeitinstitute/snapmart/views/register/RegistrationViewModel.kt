@@ -8,8 +8,11 @@ import com.creativeitinstitute.snapmart.core.DataState
 import com.creativeitinstitute.snapmart.data.models.UserRegister
 import com.creativeitinstitute.snapmart.data.repository.AuthRepository
 import com.google.firebase.firestore.auth.User
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class RegistrationViewModel : ViewModel() {
+@HiltViewModel
+class RegistrationViewModel @Inject constructor(private val authService: AuthRepository) : ViewModel() {
 
     private val _registrationResponse = MutableLiveData<DataState<UserRegister>>()
     val registrationResponse: LiveData<DataState<UserRegister>> = _registrationResponse
@@ -20,7 +23,7 @@ class RegistrationViewModel : ViewModel() {
 
         _registrationResponse.postValue(DataState.Loading())
 
-        val authService = AuthRepository()
+
 
         authService.userRegistration(user).addOnSuccessListener {
 

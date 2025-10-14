@@ -7,7 +7,6 @@ import androidx.lifecycle.ViewModel
 import com.creativeitinstitute.snapmart.core.DataState
 import com.creativeitinstitute.snapmart.data.models.UserRegister
 import com.creativeitinstitute.snapmart.data.repository.AuthRepository
-import com.google.firebase.firestore.auth.User
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -27,8 +26,25 @@ class RegistrationViewModel @Inject constructor(private val authService: AuthRep
 
         authService.userRegistration(user).addOnSuccessListener {
 
-            _registrationResponse.postValue(DataState.Success(user))
-            Log.d("TAG", "userRegistration: Success")
+            it.user?.let {createdUser->
+
+                user.userID = createdUser.uid
+
+                authService.createUser(user).addOnSuccessListener {
+
+                    _registrationResponse.postValue(DataState.Success(user))
+                    Log.d("TAG", "userRegistration: Success")
+                }.addOnFailureListener {error->
+                    _registrationResponse.postValue(DataState.Error("${error.message}"))
+
+
+                    Log.d("TAG", "userRegistration: ${error.message}")
+                }
+            }
+
+
+
+
         }.addOnFailureListener {error->
 
             _registrationResponse.postValue(DataState.Error("${error.message}"))

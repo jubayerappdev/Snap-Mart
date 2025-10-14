@@ -2,6 +2,7 @@ package com.creativeitinstitute.snapmart.di
 
 import com.creativeitinstitute.snapmart.data.repository.AuthRepository
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -21,9 +22,17 @@ class FirebaseModule {
     }
     @Provides
     @Singleton
-    fun providesFirebase(jAuth: FirebaseAuth): AuthRepository{
+    fun providesFirebaseFireStoreDB(): FirebaseFirestore{
 
-        return AuthRepository(jAuth)
+        return FirebaseFirestore.getInstance()
+
+    }
+
+    @Provides
+    @Singleton
+    fun providesFirebase(jAuth: FirebaseAuth, db : FirebaseFirestore): AuthRepository{
+
+        return AuthRepository(jAuth, db)
 
     }
 

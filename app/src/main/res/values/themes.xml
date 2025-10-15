@@ -6,4 +6,5 @@
     </style>
 
     <style name="Theme.SnapMart" parent="Base.Theme.SnapMart" />
+    <style name="Theme.SnapMart.App.Bar" parent="Theme.Material3.DayNight"/>
 </resources>

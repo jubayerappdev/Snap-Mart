@@ -1,5 +1,6 @@
 package com.creativeitinstitute.snapmart.views.register
 
+import android.content.Intent
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -9,6 +10,7 @@ import com.creativeitinstitute.snapmart.core.DataState
 import com.creativeitinstitute.snapmart.data.models.UserRegister
 import com.creativeitinstitute.snapmart.databinding.FragmentRegistrationBinding
 import com.creativeitinstitute.snapmart.isEmpty
+import com.creativeitinstitute.snapmart.views.dashboard.seller.SellerDashboard
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -78,12 +80,15 @@ class RegistrationFragment : BaseFragment<FragmentRegistrationBinding>(FragmentR
                     loading.dismiss()
                     Toast.makeText(context, "created User : ${it.data}", Toast.LENGTH_SHORT).show()
 
-                    findNavController().navigate(R.id.action_registrationFragment_to_dashboardFragment)
+                    startActivity(Intent(requireContext(), SellerDashboard::class.java))
+                    requireActivity().finish()
+
+                    }
                 }
             }
         }
 
 
-    }
+
 
 }

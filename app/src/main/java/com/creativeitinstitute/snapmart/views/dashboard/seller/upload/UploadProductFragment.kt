@@ -1,11 +1,14 @@
 package com.creativeitinstitute.snapmart.views.dashboard.seller.upload
 
 import android.Manifest
+import android.app.Activity
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.result.registerForActivityResult
@@ -17,6 +20,7 @@ import com.creativeitinstitute.snapmart.core.extract
 import com.creativeitinstitute.snapmart.core.requestPermission
 import com.creativeitinstitute.snapmart.data.models.Product
 import com.creativeitinstitute.snapmart.databinding.FragmentUploadProductBinding
+import com.github.dhaval2404.imagepicker.ImagePicker
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -60,8 +64,12 @@ class UploadProductFragment : BaseFragment<FragmentUploadProductBinding>(
 
             if (areAllPermissionGranted(permissionList)){
 
-                //ase
-                Toast.makeText(requireContext(),"Ase", Toast.LENGTH_LONG).show()
+                ImagePicker.with(this)
+                    .compress(1024)         //Final image size will be less than 1 MB(Optional)
+                    .maxResultSize(512, 512)  //Final image resolution will be less than 1080 x 1080(Optional)
+                    .createIntent { intent ->
+                        startForProfileImageResult.launch(intent)
+                    }
 
             }else{
                 //nai
@@ -89,7 +97,23 @@ class UploadProductFragment : BaseFragment<FragmentUploadProductBinding>(
         )
     }
 
+    private val startForProfileImageResult =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
+            val resultCode = result.resultCode
+            val data = result.data
 
+            if (resultCode == Activity.RESULT_OK) {
+                //Image Uri will not be null for RESULT_OK
+                val fileUri = data?.data!!
+                Log.d("TAG", "$fileUri")
+                binding.ivProduct.setImageURI(fileUri)
+
+            } else if (resultCode == ImagePicker.RESULT_ERROR) {
+                Toast.makeText(requireContext(), ImagePicker.getError(data), Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(requireContext(), "Task Cancelled", Toast.LENGTH_SHORT).show()
+            }
+        }
 
 
 }

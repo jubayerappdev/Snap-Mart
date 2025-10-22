@@ -69,6 +69,10 @@ dependencies {
 
     //lottie
     implementation(libs.lottie.android)
+
+    //imagePicker
+    implementation(libs.imagepicker)
+
 //    hilt
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)

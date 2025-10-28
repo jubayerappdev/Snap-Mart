@@ -13,22 +13,33 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.result.registerForActivityResult
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.creativeitinstitute.snapmart.R
 import com.creativeitinstitute.snapmart.base.BaseFragment
+import com.creativeitinstitute.snapmart.core.DataState
 import com.creativeitinstitute.snapmart.core.areAllPermissionGranted
 import com.creativeitinstitute.snapmart.core.extract
 import com.creativeitinstitute.snapmart.core.requestPermission
 import com.creativeitinstitute.snapmart.data.models.Product
 import com.creativeitinstitute.snapmart.databinding.FragmentUploadProductBinding
 import com.github.dhaval2404.imagepicker.ImagePicker
+import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.UUID
 
 @AndroidEntryPoint
 class UploadProductFragment : BaseFragment<FragmentUploadProductBinding>(
     FragmentUploadProductBinding::inflate
 ) {
     private lateinit var permissionsRequest: ActivityResultLauncher<Array<String>>
-    lateinit var product: Product
+
+    private val product: Product by lazy {
+        Product()
+    }
+
+    private val viewModel: ProductUploadViewModel by viewModels ()
+
+
     override fun setListener() {
 
         permissionsRequest = getPermissionRequest()
@@ -45,12 +56,18 @@ class UploadProductFragment : BaseFragment<FragmentUploadProductBinding>(
                 val description = etProductDescription.extract()
                 val amount = etProductAmount.extract()
 
-                product = Product(
-                    name = name,
-                    description = description,
-                    price = price.toDouble(),
-                    amount = amount.toInt()
-                )
+
+                FirebaseAuth.getInstance().currentUser?.let {
+                    product.apply {
+                        this.sellerID = it.uid
+                        this.productID = UUID.randomUUID().toString()
+                        this.name = name
+                        this.description = description
+                        this.price = price.toDouble()
+                        this.amount = amount.toInt()
+                    }
+                }
+
 
                 uploadProduct(product)
             }
@@ -83,10 +100,27 @@ class UploadProductFragment : BaseFragment<FragmentUploadProductBinding>(
 
     private fun uploadProduct(product: Product) {
 
+        viewModel.productUpload(product)
 
     }
 
     override fun allObserver() {
+        viewModel.productUploadResponse.observe(viewLifecycleOwner){
+            when(it){
+                is DataState.Error ->
+                {
+                    loading.dismiss()
+                }
+                is DataState.Loading -> {
+                    loading.show()
+                }
+                is DataState.Success -> {
+
+                    Toast.makeText(requireContext(), it.data, Toast.LENGTH_LONG).show()
+                    loading.dismiss()
+                }
+            }
+        }
 
     }
 
@@ -107,6 +141,7 @@ class UploadProductFragment : BaseFragment<FragmentUploadProductBinding>(
                 val fileUri = data?.data!!
                 Log.d("TAG", "$fileUri")
                 binding.ivProduct.setImageURI(fileUri)
+                product.imageLink = fileUri.toString()
 
             } else if (resultCode == ImagePicker.RESULT_ERROR) {
                 Toast.makeText(requireContext(), ImagePicker.getError(data), Toast.LENGTH_SHORT).show()

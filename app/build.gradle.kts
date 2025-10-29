@@ -72,6 +72,8 @@ dependencies {
 
     //imagePicker
     implementation(libs.imagepicker)
+    //coil
+    implementation(libs.coil)
 
 //    hilt
     implementation(libs.hilt.android)

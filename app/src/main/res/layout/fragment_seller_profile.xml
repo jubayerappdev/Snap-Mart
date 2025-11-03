@@ -1,15 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#9C27B0"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:gravity="center"
     tools:context=".views.dashboard.seller.profile.SellerProfileFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content">
 
-</FrameLayout>
+        <ImageView
+            android:id="@+id/iv_profile"
+            android:layout_marginVertical="@dimen/_32sdp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_image_placeholder"
+            android:layout_width="@dimen/_200sdp"
+            android:layout_height="@dimen/_200sdp"/>
+
+
+        <EditText
+            android:id="@+id/tct_shop_name"
+            android:textColor="#009688"
+            android:textStyle="bold"
+            android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
+            android:fontFamily="@font/poppins"
+            android:gravity="center"
+            tools:text = "Bhai Bhai Shopping Store"
+            android:layout_marginHorizontal="@dimen/_32sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <EditText
+            android:id="@+id/et_name"
+            android:inputType="text"
+            android:paddingStart="@dimen/_4sdp"
+            android:fontFamily="@font/poppins"
+            tools:text = "Jubayer Al As'ad"
+            android:layout_marginHorizontal="@dimen/_32sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <EditText
+            android:id="@+id/et_email"
+            android:inputType="textEmailAddress"
+            android:paddingStart="@dimen/_4sdp"
+            android:fontFamily="@font/poppins"
+            tools:text = "jubayer@gmail.com"
+            android:layout_marginHorizontal="@dimen/_32sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/btn_update"
+            android:text="Update Profile"
+            android:textStyle="bold"
+            android:fontFamily="@font/poppins"
+            app:strokeColor="#009688"
+            android:textColor="#009688"
+            android:layout_marginHorizontal="@dimen/_32sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+
+
+    </LinearLayout>
+
+
+</ScrollView>

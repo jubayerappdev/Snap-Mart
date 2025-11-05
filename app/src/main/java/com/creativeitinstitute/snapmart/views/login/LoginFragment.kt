@@ -7,9 +7,11 @@ import androidx.navigation.fragment.findNavController
 import com.creativeitinstitute.snapmart.R
 import com.creativeitinstitute.snapmart.base.BaseFragment
 import com.creativeitinstitute.snapmart.core.DataState
+import com.creativeitinstitute.snapmart.core.Nodes
 import com.creativeitinstitute.snapmart.data.models.UserLogin
 import com.creativeitinstitute.snapmart.databinding.FragmentLoginBinding
 import com.creativeitinstitute.snapmart.isEmpty
+import com.creativeitinstitute.snapmart.views.dashboard.customer.CustomerDashboardActivity
 import com.creativeitinstitute.snapmart.views.dashboard.seller.SellerDashboard
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -63,8 +65,23 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
                     loading.dismiss()
                     Toast.makeText(context, "created User : ${it.data}", Toast.LENGTH_SHORT).show()
 
-                    startActivity(Intent(requireContext(), SellerDashboard::class.java))
-                    requireActivity().finish()
+                    it.data?.apply {
+                        when(userType){
+                            Nodes.USER_TYPE_CUSTOMER ->{
+                                startActivity(Intent(requireContext(), CustomerDashboardActivity::class.java))
+                                requireActivity().finish()
+                            }
+                            Nodes.USER_TYPE_SELLER ->{
+                                startActivity(Intent(requireContext(), SellerDashboard::class.java))
+                                requireActivity().finish()
+                            }
+                            else -> {
+                                Toast.makeText(requireContext(), "Something is wrong", Toast.LENGTH_SHORT).show()
+                            }
+                        }
+                    }
+
+
                 }
             }
         }

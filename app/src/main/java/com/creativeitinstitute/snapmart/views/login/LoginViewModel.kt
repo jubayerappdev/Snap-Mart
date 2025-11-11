@@ -42,7 +42,7 @@ class LoginViewModel @Inject constructor(private val authService: AuthRepository
 
     }
 
-    private fun checkUserByID(uid: String?) {
+    fun checkUserByID(uid: String?) {
 
         uid?.let { userID->
             authService.getUserByUserID(userID).addOnSuccessListener {value->

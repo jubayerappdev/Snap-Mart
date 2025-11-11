@@ -8,45 +8,78 @@
     android:gravity="center"
     tools:context=".views.starter.StartFragment">
 
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/animationView"
-        android:layout_width="256dp"
-        android:layout_height="256dp"
-        app:lottie_rawRes="@raw/ecomlogo"
-        app:lottie_autoPlay="true"
-        app:lottie_loop="true"
-        android:layout_gravity="center"/>
-
-    <TextView
-        android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/_32sdp"
-        android:fontFamily="@font/bebas_neue"
+    <LinearLayout
         android:gravity="center"
-        android:text="Welcome to Snap Mart App"
-        android:textColor="#FF5722" />
-
-    <Button
-        android:id="@+id/btnLogin"
-        style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+        android:id="@+id/layout_loading"
+        android:visibility="gone"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/_32sdp"
-        android:layout_marginVertical="@dimen/_8sdp"
-        android:fontFamily="@font/poppins"
-        android:text="Login"
-        android:textStyle="bold" />
+        android:layout_height="match_parent">
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnRegister"
-        app:strokeColor="#FF5722"
-        android:textStyle="bold"
-        android:text="Register"
-        android:fontFamily="@font/poppins"
-        android:layout_marginHorizontal="@dimen/_32sdp"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/loading"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_100sdp"
+            app:lottie_rawRes="@raw/loading_gray"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            android:layout_gravity="center"/>
+
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:gravity="center"
+        android:id="@+id/layout_main"
+        android:visibility="visible"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="match_parent">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/animationView"
+            android:layout_width="256dp"
+            android:layout_height="256dp"
+            app:lottie_rawRes="@raw/ecomlogo"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_32sdp"
+            android:fontFamily="@font/bebas_neue"
+            android:gravity="center"
+            android:text="Welcome to Snap Mart App"
+            android:textColor="#FF5722" />
+
+        <Button
+            android:id="@+id/btnLogin"
+            style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_32sdp"
+            android:layout_marginVertical="@dimen/_8sdp"
+            android:fontFamily="@font/poppins"
+            android:text="Login"
+            android:textStyle="bold" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnRegister"
+            app:strokeColor="#FF5722"
+            android:textStyle="bold"
+            android:text="Register"
+            android:fontFamily="@font/poppins"
+            android:layout_marginHorizontal="@dimen/_32sdp"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+
+
+
+    </LinearLayout>
+
 
 </LinearLayout>

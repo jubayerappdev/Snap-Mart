@@ -6,27 +6,27 @@
     app:startDestination="@id/customerHomeFragment">
     <fragment
         android:id="@+id/customerHomeFragment"
-        android:name="com.creativeitinstitute.snapmart.CustomerHomeFragment"
+        android:name="com.creativeitinstitute.snapmart.views.dashboard.customer.home.CustomerHomeFragment"
         android:label="Home"
         tools:layout="@layout/fragment_customer_home" />
     <fragment
         android:id="@+id/customerCartFragment"
-        android:name="com.creativeitinstitute.snapmart.CustomerCartFragment"
+        android:name="com.creativeitinstitute.snapmart.views.dashboard.customer.cart.CustomerCartFragment"
         android:label="Cart"
         tools:layout="@layout/fragment_customer_cart" />
     <fragment
         android:id="@+id/customerProfileFragment"
-        android:name="com.creativeitinstitute.snapmart.CustomerProfileFragment"
+        android:name="com.creativeitinstitute.snapmart.views.dashboard.customer.profile.CustomerProfileFragment"
         android:label="Profile"
         tools:layout="@layout/fragment_customer_profile" />
     <fragment
         android:id="@+id/customerMessageFragment"
-        android:name="com.creativeitinstitute.snapmart.CustomerMessageFragment"
+        android:name="com.creativeitinstitute.snapmart.views.dashboard.customer.message.CustomerMessageFragment"
         android:label="Message"
         tools:layout="@layout/fragment_customer_message" />
     <fragment
         android:id="@+id/customerWishlistFragment"
-        android:name="com.creativeitinstitute.snapmart.CustomerWishlistFragment"
+        android:name="com.creativeitinstitute.snapmart.views.dashboard.customer.wishlist.CustomerWishlistFragment"
         android:label="Wishlist"
         tools:layout="@layout/fragment_customer_wishlist" />
 </navigation>

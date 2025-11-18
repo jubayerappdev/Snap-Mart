@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="@dimen/_4sdp"
+    app:cardCornerRadius="@dimen/_8sdp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_product"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintDimensionRatio="1:1"
+            android:scaleType="centerInside"
+            android:src="@drawable/mac"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"/>
+
+        <TextView
+            android:id="@+id/txt_product_name"
+            android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
+            android:fontFamily="@font/poppins"
+            android:layout_marginHorizontal="@dimen/_4sdp"
+            android:text="Macbook Air"
+            app:layout_constraintTop_toBottomOf="@id/iv_product"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/txt_product_description"
+            android:textAppearance="@style/TextAppearance.Material3.TitleSmall"
+            android:fontFamily="@font/poppins"
+            android:layout_marginHorizontal="@dimen/_4sdp"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:text="@string/description"
+            app:layout_constraintTop_toBottomOf="@id/txt_product_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/txt_product_price"
+            android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
+            android:fontFamily="@font/poppins"
+            android:layout_marginHorizontal="@dimen/_4sdp"
+            android:text="Price : $50"
+            app:layout_constraintTop_toBottomOf="@id/txt_product_stock"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/txt_product_stock"
+            android:textAppearance="@style/TextAppearance.Material3.TitleSmall"
+            android:fontFamily="@font/poppins"
+            android:layout_marginHorizontal="@dimen/_4sdp"
+            android:text="Stock : 50"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txt_product_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:text="Add To Cart"
+            android:drawableStart="@drawable/ic_cart"
+            android:padding="@dimen/_8sdp"
+            android:layout_marginHorizontal="@dimen/_4sdp"
+            android:id="@+id/cart_btn"
+            android:layout_marginVertical="@dimen/_8sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txt_product_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <ImageView
+            android:id="@+id/wish_list_iv"
+            android:layout_marginEnd="@dimen/_16sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/cart_btn"
+            app:layout_constraintTop_toTopOf="@id/cart_btn"
+            android:src="@drawable/ic_wishlist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>
